@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.font-stencil-regular {
+  font-family: "Stardos Stencil", "StardosStencil-Regular";
+  font-weight: 400;
+}
+
+.font-stencil-bold {
+  font-family: "Stardos Stencil", "StardosStencil-Bold";
+  font-weight: 700;
+}

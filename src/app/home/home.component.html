@@ -1,83 +1,96 @@
-<GridLayout rows="*,auto" columns="*,*" class="bg-slate-500">
-  <StackLayout
-    *ngIf="!imageSource"
-    row="0"
-    col="0"
-    colSpan="2"
-    verticalAlignment="middle"
-    horizontalAlignment="center"
-  >
-    <Label text="👇" textWrap="true" class="text-center text-5xl pb-10"></Label>
-    <Button
-      text="Take a Boy Band Pic!"
-      textWrap="true"
-      (tap)="openCamera()"
-      class="text-white text-center font-bold text-5xl bg-slate-700 rounded-md p-4 m-4"
-    ></Button>
-    <Label text="👆" textWrap="true" class="text-center text-5xl pt-10"></Label>
-  </StackLayout>
-
-  <GridLayout
-    id="imageWithOverlay"
-    *ngIf="imageSource"
-    row="0"
-    col="0"
-    colSpan="2"
-    rows="auto,*"
-    columns="*"
-  >
-    <Image
+<ScrollView>
+  <GridLayout rows="auto,auto" columns="*,*" class="bg-slate-500">
+    <StackLayout
+      *ngIf="!imageSource"
       row="0"
       col="0"
-      rowSpan="2"
-      stretch="aspectFit"
-      [src]="imageSource"
-    ></Image>
-
-    <Label
-      row="0"
-      col="0"
-      class="bg-white rounded-md text-2xl text-black text-center font-mono"
-      [text]="today | date : 'MM/dd/yy'"
-      width="125"
-      height="50"
+      colSpan="2"
+      verticalAlignment="middle"
       horizontalAlignment="center"
-    ></Label>
-
-    <GridLayout
-      row="0"
-      col="0"
-      rowSpan="2"
-      verticalAlignment="bottom"
-      class="m-4"
     >
       <Label
-        class="bg-white rounded-md text-2xl text-black text-center font-mono"
-        text="[Logo Here]"
-        width="auto"
-        height="50"
+        text="👇"
+        textWrap="true"
+        class="text-center text-5xl pb-10"
       ></Label>
+      <Button
+        text="Take a Boy Band Pic"
+        textWrap="true"
+        (tap)="openCamera()"
+        class="text-white text-center font-bold text-5xl bg-slate-700 rounded-md p-4 m-4 font-stencil-bold"
+      ></Button>
+      <Label
+        text="👆"
+        textWrap="true"
+        class="text-center text-5xl pt-10"
+      ></Label>
+    </StackLayout>
+
+    <ContentView
+      *ngIf="imageSource"
+      row="0"
+      col="0"
+      colSpan="2"
+      class="border-8 border-solid border-slate-100 m-4"
+    >
+      <GridLayout id="imageWithOverlay" rows="*" columns="*">
+        <Image row="0" col="0" stretch="aspectFit" [src]="imageSource"></Image>
+
+        <StackLayout
+          row="0"
+          col="0"
+          horizontalAlignment="left"
+          verticalAlignment="top"
+          class="bg-white rounded-md m-4"
+          width="125"
+          height="50"
+        >
+          <Label
+            class="text-xl text-black text-center font-stencil-bold"
+            [text]="today | date : 'EEEE'"
+          ></Label>
+          <Label
+            class="text-xl text-black text-center font-stencil-bold"
+            [text]="today | date : 'MM/dd/yy'"
+          ></Label>
+        </StackLayout>
+
+        <Label
+          row="0"
+          col="0"
+          class="bg-white rounded-md text-2xl text-black text-center font-stencil-bold m-4 py-2"
+          text="[Logo]"
+          width="auto"
+          height="50"
+          horizontalAlignment="right"
+          verticalAlignment="bottom"
+        ></Label>
+      </GridLayout>
+    </ContentView>
+
+    <GridLayout
+      *ngIf="imageSource"
+      row="1"
+      col="0"
+      colSpan="2"
+      rows="*"
+      columns="*,*"
+      orientation="horizontal"
+    >
+      <Button
+        row="0"
+        col="0"
+        text="Clear"
+        (tap)="clearImageSource()"
+        class="bg-slate-600 text-white rounded-md h-14 m-4 p-4 font-stencil-bold text-2xl"
+      ></Button>
+      <Button
+        row="0"
+        col="1"
+        text="Share"
+        (tap)="sharePicWithOverlay($event)"
+        class="bg-slate-600 text-white rounded-md h-14 m-4 font-stencil-bold text-2xl"
+      ></Button>
     </GridLayout>
   </GridLayout>
-
-  <Button
-    *ngIf="imageSource"
-    row="0"
-    col="0"
-    colSpan="2"
-    text="Clear"
-    (tap)="clearImageSource()"
-    class="bg-slate-600 text-white rounded-md font-bold h-14 m-4 p-4"
-    horizontalAlignment="right"
-    verticalAlignment="top"
-  ></Button>
-  <Button
-    *ngIf="imageSource"
-    row="1"
-    col="0"
-    colSpan="2"
-    text="Share"
-    (tap)="sharePicWithOverlay($event)"
-    class="bg-slate-600 text-white rounded-md font-bold h-14 m-4"
-  ></Button>
-</GridLayout>
+</ScrollView>
