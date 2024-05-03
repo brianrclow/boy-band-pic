@@ -42,7 +42,7 @@
           horizontalAlignment="left"
           verticalAlignment="top"
           class="bg-white rounded-md m-4"
-          width="125"
+          width="auto"
           height="50"
         >
           <Label
@@ -55,16 +55,18 @@
           ></Label>
         </StackLayout>
 
-        <Label
+        <Image
+          src="~/assets/f3boise.png"
           row="0"
           col="0"
-          class="bg-white rounded-md text-2xl text-black text-center font-stencil-bold m-4 py-2"
-          text="[Logo]"
-          width="auto"
-          height="50"
+          stretch="aspectFit"
+          width="100"
+          height="auto"
+          class="m-4"
           horizontalAlignment="right"
           verticalAlignment="bottom"
-        ></Label>
+        >
+        </Image>
       </GridLayout>
     </ContentView>
 
