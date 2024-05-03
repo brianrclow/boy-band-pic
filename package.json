@@ -13,17 +13,21 @@
     "@angular/platform-browser-dynamic": "~17.3.0",
     "@angular/router": "~17.3.0",
     "@nativescript/angular": "^17.0.0",
+    "@nativescript/camera": "^5.1.1",
     "@nativescript/core": "~8.7.0",
-    "@nativescript/theme": "~3.0.2",
+    "@nativescript/social-share": "^2.3.0",
+    "@nativescript/tailwind": "^2.1.0",
     "rxjs": "~7.8.0",
     "zone.js": "~0.14.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~17.3.0",
     "@angular/compiler-cli": "~17.3.0",
+    "@nativescript/ios": "8.7.1",
     "@nativescript/types": "~8.7.0",
-    "@nativescript/webpack": "~5.0.19",
+    "@nativescript/webpack": "~5.0.21",
     "@ngtools/webpack": "~17.3.0",
+    "tailwindcss": "^3.4.3",
     "typescript": "~5.4.0"
   }
 }

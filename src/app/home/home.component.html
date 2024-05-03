@@ -1,0 +1,65 @@
+<GridLayout rows="*,auto" columns="*,*" class="bg-slate-500">
+  <StackLayout
+    *ngIf="!imageSource"
+    row="0"
+    col="0"
+    colSpan="2"
+    verticalAlignment="middle"
+    horizontalAlignment="center"
+  >
+    <Label text="👇" textWrap="true" class="text-center text-5xl pb-10"></Label>
+    <Button
+      text="Take a Boy Band Pic!"
+      textWrap="true"
+      (tap)="openCamera()"
+      class="text-white text-center font-bold text-5xl bg-slate-700 rounded-md p-4 m-4"
+    ></Button>
+    <Label text="👆" textWrap="true" class="text-center text-5xl pt-10"></Label>
+  </StackLayout>
+
+  <GridLayout
+    *ngIf="imageSource"
+    row="0"
+    col="0"
+    colSpan="2"
+    rows="auto,*"
+    columns="*"
+  >
+    <Image
+      row="0"
+      col="0"
+      rowSpan="2"
+      stretch="aspectFit"
+      [src]="imageSource"
+    ></Image>
+
+    <Button
+      row="0"
+      col="0"
+      text="Clear"
+      (tap)="clearImageSource()"
+      class="bg-slate-600 text-white rounded-md font-bold h-14 m-4 p-4"
+      horizontalAlignment="right"
+    ></Button>
+
+    <Label
+      row="0"
+      col="0"
+      class="bg-white rounded-md text-2xl text-black text-center font-mono"
+      [text]="today | date : 'MM/dd/yy'"
+      width="125"
+      height="50"
+      horizontalAlignment="center"
+    ></Label>
+  </GridLayout>
+
+  <Button
+    *ngIf="imageSource"
+    row="1"
+    col="0"
+    colSpan="2"
+    text="Share"
+    (tap)="sharePic()"
+    class="bg-slate-600 text-white rounded-md font-bold h-14 m-4"
+  ></Button>
+</GridLayout>
