@@ -1,7 +1,10 @@
 import { Component, NgZone, OnInit } from "@angular/core";
 import * as Camera from "@nativescript/camera";
 import { EventData, ImageAsset, ImageSource, View } from "@nativescript/core";
+import * as imagePickerPlugin from "@nativescript/imagepicker";
+import { ImagePicker } from "@nativescript/imagepicker";
 import * as SocialShare from "@nativescript/social-share";
+
 @Component({
   selector: "ns-home",
   templateUrl: "./home.component.html",
@@ -9,6 +12,7 @@ import * as SocialShare from "@nativescript/social-share";
 export class HomeComponent implements OnInit {
   public imageSource: ImageSource;
   public today = new Date();
+  imagePickerObj: ImagePicker;
 
   constructor(private zone: NgZone) {}
 
@@ -72,6 +76,46 @@ export class HomeComponent implements OnInit {
       alert("Image Asset was null");
       this.imageSource = null;
     }
+  }
+
+  openLibrary() {
+    this.imagePickerObj = imagePickerPlugin.create({
+      mode: "single",
+    });
+    this.imagePickerObj
+      .authorize()
+      .then((authResult) => {
+        if (authResult.authorized) {
+          return this.imagePickerObj.present().then((selection) => {
+            selection.forEach((selected) => {
+              // console.log("got image!");
+
+              ImageSource.fromAsset(selected.asset)
+                .then((source) => {
+                  // Now 'source' contains the converted ImageSource
+                  // You can use 'source' wherever you need an ImageSource
+                  this.imageSource = source;
+                })
+                .catch((err) => {
+                  // Handle error if any
+                  console.error(
+                    "Error converting ImageAsset to ImageSource:",
+                    err
+                  );
+                });
+
+              //etc
+            });
+          });
+        } else {
+          // process authorization not granted.
+          console.log("process authorization not granted.");
+        }
+      })
+      .catch(function (e) {
+        // process error
+        console.log("Error: ", e);
+      });
   }
 
   // takes a screenshot of the screen with the overlay and the original image
