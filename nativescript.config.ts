@@ -1,7 +1,7 @@
 import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
-  id: 'org.nativescript.boybandpic',
+  id: 'com.brianrclow.boybandpic',
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   android: {
