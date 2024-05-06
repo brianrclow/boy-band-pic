@@ -74,6 +74,7 @@
       <Image row="0" col="0" stretch="aspectFit" [src]="imageSource"></Image>
 
       <StackLayout
+        (tap)="changeDate($event)"
         row="0"
         col="0"
         horizontalAlignment="left"
@@ -84,11 +85,11 @@
       >
         <Label
           class="text-xl text-black text-center font-stencil-bold"
-          [text]="today | date : 'EEEE'"
+          [text]="selectedDate | date : 'EEEE'"
         ></Label>
         <Label
           class="text-xl text-black text-center font-stencil-bold"
-          [text]="today | date : 'MM/dd/yy'"
+          [text]="selectedDate | date : 'MM/dd/yy'"
         ></Label>
       </StackLayout>
 

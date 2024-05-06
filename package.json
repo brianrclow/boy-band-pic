@@ -15,6 +15,7 @@
     "@nativescript/angular": "^17.0.0",
     "@nativescript/camera": "^5.1.1",
     "@nativescript/core": "~8.7.0",
+    "@nativescript/datetimepicker": "^2.1.13",
     "@nativescript/imagepicker": "^3.1.1",
     "@nativescript/social-share": "^2.3.0",
     "@nativescript/tailwind": "^2.1.0",

@@ -1,12 +1,18 @@
-import { Component, NgZone, OnInit } from "@angular/core";
+import { Component, NgZone, OnInit, ViewContainerRef } from "@angular/core";
+import { ModalDialogService } from "@nativescript/angular";
 import * as Camera from "@nativescript/camera";
 import {
+  Button,
   Dialogs,
   EventData,
   ImageAsset,
   ImageSource,
   View,
 } from "@nativescript/core";
+import {
+  DateTimePicker,
+  DateTimePickerStyle,
+} from "@nativescript/datetimepicker";
 import * as imagePickerPlugin from "@nativescript/imagepicker";
 import { ImagePicker } from "@nativescript/imagepicker";
 import * as SocialShare from "@nativescript/social-share";
@@ -18,9 +24,15 @@ import * as SocialShare from "@nativescript/social-share";
 export class HomeComponent implements OnInit {
   public imageSource: ImageSource;
   public today = new Date();
+  public selectedDate = new Date();
   imagePickerObj: ImagePicker;
+  style = new DateTimePickerStyle(); // used for creating customs styles for the native date picker
 
-  constructor(private zone: NgZone) {}
+  constructor(
+    private zone: NgZone,
+    private modal: ModalDialogService,
+    private vcRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {
     this.checkPermissions();
@@ -41,6 +53,27 @@ export class HomeComponent implements OnInit {
     console.log(" ");
     console.log("permission request rejected: TODO show user a message");
     Dialogs.alert("Please enable camera permissions to use this feature.");
+  }
+
+  changeDate(args: EventData) {
+    DateTimePicker.pickDate(
+      {
+        title: "Select Boy Band Pic Date",
+        context: (<Button>args.object)._context,
+        date: this.selectedDate,
+        // minDate: // min date a user can select, shouldn't need a min date, allow them to select whenever
+        maxDate: this.today, // max date a user can select from date picker (year, month, day)
+        okButtonText: "Select Date",
+        cancelButtonText: "Back",
+        locale: "en_GB",
+      },
+      this.style
+    ).then((selected_from_datepicker: Date) => {
+      // if a user selects a day, this does not get called if cancelled
+      if (selected_from_datepicker) {
+        this.selectedDate = selected_from_datepicker;
+      }
+    });
   }
 
   openCamera() {
