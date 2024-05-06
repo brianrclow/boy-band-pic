@@ -1,6 +1,12 @@
 import { Component, NgZone, OnInit } from "@angular/core";
 import * as Camera from "@nativescript/camera";
-import { EventData, ImageAsset, ImageSource, View } from "@nativescript/core";
+import {
+  Dialogs,
+  EventData,
+  ImageAsset,
+  ImageSource,
+  View,
+} from "@nativescript/core";
 import * as imagePickerPlugin from "@nativescript/imagepicker";
 import { ImagePicker } from "@nativescript/imagepicker";
 import * as SocialShare from "@nativescript/social-share";
@@ -34,6 +40,7 @@ export class HomeComponent implements OnInit {
   showPermissionRejectionDialog() {
     console.log(" ");
     console.log("permission request rejected: TODO show user a message");
+    Dialogs.alert("Please enable camera permissions to use this feature.");
   }
 
   openCamera() {
@@ -77,7 +84,9 @@ export class HomeComponent implements OnInit {
       this.imageSource = null;
     }
   }
-
+  openHistory() {
+    console.log("open history");
+  }
   openLibrary() {
     this.imagePickerObj = imagePickerPlugin.create({
       mode: "single",

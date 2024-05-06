@@ -11,3 +11,7 @@
   font-family: "Stardos Stencil", "StardosStencil-Bold";
   font-weight: 700;
 }
+
+.rotated-button {
+  transform: rotate(-28deg);
+}

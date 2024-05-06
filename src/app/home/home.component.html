@@ -1,109 +1,135 @@
-<ScrollView>
-  <GridLayout rows="auto,auto" columns="*,*" class="bg-slate-500">
-    <StackLayout
-      *ngIf="!imageSource"
-      row="0"
-      col="0"
-      colSpan="2"
-      verticalAlignment="middle"
-      horizontalAlignment="center"
-    >
-      <Label
-        text="👇"
-        textWrap="true"
-        class="text-center text-5xl pb-10"
-      ></Label>
+<!-- <ScrollView> -->
+<GridLayout rows="auto,auto" columns="*,*">
+  <GridLayout
+    *ngIf="!imageSource"
+    row="0"
+    col="0"
+    colSpan="2"
+    rows="auto,auto,auto"
+    columns="*"
+  >
+    <GridLayout row="0" col="0" (tap)="openCamera()">
+      <!-- <Image
+        src="~/assets/cinder-block.png"
+        stretch="aspectFit"
+        width="70%"
+        height="auto"
+        class="m-4"
+      >
+      </Image> -->
       <Button
-        text="Take a Boy Band Pic"
+        text="Take"
         textWrap="true"
-        (tap)="openCamera()"
-        class="text-white text-center font-bold text-5xl bg-slate-700 rounded-md p-4 m-4 font-stencil-bold"
+        class="text-white text-center font-bold text-6xl pl-40 ml-2 pb-4 font-stencil-bold rounded-md bg-slate-600"
+        horizontalAlignment="left"
+        verticalAlignment="bottom"
       ></Button>
-      <Label
-        text="Or"
-        textWrap="true"
-        class="py-4 text-white text-center font-bold text-5xl font-stencil-bold"
-      ></Label>
+    </GridLayout>
+
+    <GridLayout row="1" col="0" (tap)="openLibrary()">
+      <Image
+        src="~/assets/cinder-block.png"
+        stretch="aspectFit"
+        width="70%"
+        height="auto"
+        class="m-4"
+      >
+      </Image>
       <Button
-        text="Load from Camera Roll"
+        text="Use"
         textWrap="true"
-        (tap)="openLibrary()"
-        class="text-white text-center font-bold text-5xl bg-slate-700 rounded-md p-4 m-4 font-stencil-bold"
-      ></Button>
-      <Label
-        text="👆"
+        class="text-white text-center font-bold text-6xl pl-40 ml-2 pb-4 font-stencil-bold rotated-button"
+        horizontalAlignment="left"
+        verticalAlignment="bottom"
+      >
+      </Button>
+    </GridLayout>
+    <GridLayout row="2" col="0" (tap)="openHistory()">
+      <Image
+        src="~/assets/cinder-block.png"
+        stretch="aspectFit"
+        width="70%"
+        height="auto"
+        class="m-4"
+      >
+      </Image>
+      <Button
+        text="Learn"
         textWrap="true"
-        class="text-center text-5xl pt-10"
-      ></Label>
-    </StackLayout>
-
-    <ContentView
-      *ngIf="imageSource"
-      row="0"
-      col="0"
-      colSpan="2"
-      class="border-8 border-solid border-slate-100 m-4"
-    >
-      <GridLayout id="imageWithOverlay" rows="*" columns="*">
-        <Image row="0" col="0" stretch="aspectFit" [src]="imageSource"></Image>
-
-        <StackLayout
-          row="0"
-          col="0"
-          horizontalAlignment="left"
-          verticalAlignment="top"
-          class="bg-white rounded-md m-4"
-          width="auto"
-          height="50"
-        >
-          <Label
-            class="text-xl text-black text-center font-stencil-bold"
-            [text]="today | date : 'EEEE'"
-          ></Label>
-          <Label
-            class="text-xl text-black text-center font-stencil-bold"
-            [text]="today | date : 'MM/dd/yy'"
-          ></Label>
-        </StackLayout>
-
-        <Image
-          src="~/assets/f3boise.png"
-          row="0"
-          col="0"
-          stretch="aspectFit"
-          width="100"
-          height="auto"
-          class="m-4"
-          horizontalAlignment="right"
-          verticalAlignment="bottom"
-        >
-        </Image>
-      </GridLayout>
-    </ContentView>
-
-    <GridLayout
-      *ngIf="imageSource"
-      row="1"
-      col="0"
-      colSpan="2"
-      rows="*"
-      columns="*,*"
-      orientation="horizontal"
-    >
-      <Button
-        row="0"
-        col="0"
-        text="Clear"
-        (tap)="clearImageSource()"
-        class="bg-slate-600 text-white rounded-md h-14 m-4 p-4 font-stencil-bold text-2xl"
-      ></Button>
-      <Button
-        row="0"
-        col="1"
-        text="Share"
-        (tap)="sharePicWithOverlay($event)"
-        class="bg-slate-600 text-white rounded-md h-14 m-4 font-stencil-bold text-2xl"
+        class="text-white text-center font-bold text-6xl pl-40 ml-2 pb-4 font-stencil-bold rotated-button"
+        horizontalAlignment="left"
+        verticalAlignment="bottom"
       ></Button>
     </GridLayout>
   </GridLayout>
-</ScrollView>
+
+  <ContentView
+    *ngIf="imageSource"
+    row="0"
+    col="0"
+    colSpan="2"
+    class="border-8 border-solid border-slate-100 m-4"
+  >
+    <GridLayout id="imageWithOverlay" rows="*" columns="*">
+      <Image row="0" col="0" stretch="aspectFit" [src]="imageSource"></Image>
+
+      <StackLayout
+        row="0"
+        col="0"
+        horizontalAlignment="left"
+        verticalAlignment="top"
+        class="bg-white rounded-md m-4"
+        width="auto"
+        height="50"
+      >
+        <Label
+          class="text-xl text-black text-center font-stencil-bold"
+          [text]="today | date : 'EEEE'"
+        ></Label>
+        <Label
+          class="text-xl text-black text-center font-stencil-bold"
+          [text]="today | date : 'MM/dd/yy'"
+        ></Label>
+      </StackLayout>
+
+      <Image
+        src="~/assets/f3boise.png"
+        row="0"
+        col="0"
+        stretch="aspectFit"
+        width="100"
+        height="auto"
+        class="m-4"
+        horizontalAlignment="right"
+        verticalAlignment="bottom"
+      >
+      </Image>
+    </GridLayout>
+  </ContentView>
+
+  <GridLayout
+    *ngIf="imageSource"
+    row="1"
+    col="0"
+    colSpan="2"
+    rows="*"
+    columns="*,*"
+    orientation="horizontal"
+  >
+    <Button
+      row="0"
+      col="0"
+      text="Clear"
+      (tap)="clearImageSource()"
+      class="bg-slate-600 text-white rounded-md h-14 m-4 p-4 font-stencil-bold text-2xl"
+    ></Button>
+    <Button
+      row="0"
+      col="1"
+      text="Share"
+      (tap)="sharePicWithOverlay($event)"
+      class="bg-slate-600 text-white rounded-md h-14 m-4 font-stencil-bold text-2xl"
+    ></Button>
+  </GridLayout>
+</GridLayout>
+<!-- </ScrollView> -->
